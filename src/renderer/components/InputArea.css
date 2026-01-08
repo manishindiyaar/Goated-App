@@ -1,0 +1,140 @@
+/* InputArea Component - Clinical Zen Floating Input Bar */
+
+.input-area {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: var(--spacing-6);
+  background: linear-gradient(
+    to top,
+    var(--color-background) 60%,
+    transparent
+  );
+  padding-top: 80px;
+}
+
+.input-area__container {
+  max-width: 768px;
+  margin: 0 auto;
+}
+
+.input-area__box {
+  position: relative;
+  background-color: var(--color-surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--color-gray-200);
+  transition: border-color var(--transition-normal), 
+              box-shadow var(--transition-normal);
+}
+
+.input-area__box--listening {
+  border-color: var(--color-sage-500);
+  box-shadow: var(--shadow-lg), 0 0 0 4px rgba(93, 133, 112, 0.1);
+}
+
+.input-area__textarea {
+  width: 100%;
+  background: transparent;
+  border: none !important;
+  padding: var(--spacing-4);
+  min-height: 60px;
+  resize: none;
+  font-family: var(--font-sans);
+  font-size: var(--font-size-body);
+  color: var(--color-text-primary);
+  line-height: 1.5;
+  outline: none !important;
+  box-shadow: none !important;
+  border-radius: 0;
+}
+
+.input-area__textarea::placeholder {
+  color: var(--color-gray-400);
+}
+
+.input-area__textarea:focus {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.input-area__actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 var(--spacing-4) var(--spacing-3);
+}
+
+.input-area__attach-btn {
+  color: var(--color-gray-400);
+  padding: var(--spacing-2);
+  border-radius: var(--radius-md);
+  transition: color var(--transition-normal), background-color var(--transition-normal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.input-area__attach-btn:hover {
+  color: var(--color-gray-600);
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.input-area__mic-btn {
+  padding: var(--spacing-2);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  transition: all var(--transition-normal);
+}
+
+.input-area__mic-btn--idle {
+  background-color: var(--color-sage-50);
+  color: var(--color-sage-700);
+}
+
+.input-area__mic-btn--idle:hover {
+  background-color: var(--color-sage-100);
+}
+
+.input-area__mic-btn--listening {
+  background-color: var(--color-sage-500);
+  color: white;
+  box-shadow: var(--shadow-md);
+  transform: scale(1.05);
+}
+
+.input-area__mic-btn--listening svg {
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.input-area__mic-text {
+  font-size: var(--font-size-small);
+  font-weight: 500;
+}
+
+.input-area__disclaimer {
+  text-align: center;
+  margin-top: var(--spacing-3);
+  font-size: var(--font-size-caption);
+  color: var(--color-gray-400);
+}
+
+
+/* Disabled state */
+.input-area__box--disabled {
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.input-area__box--disabled .input-area__textarea {
+  cursor: not-allowed;
+}

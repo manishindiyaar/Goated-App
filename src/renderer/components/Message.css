@@ -1,0 +1,328 @@
+/* Message Component - Claude-style Message Bubbles with Markdown Support */
+
+/* Base message container */
+.message {
+  display: flex;
+  width: 100%;
+  max-width: 768px;
+  margin: 0 auto var(--spacing-6);
+  padding: 0 var(--spacing-4);
+}
+
+.message--user {
+  justify-content: flex-end;
+}
+
+.message--assistant {
+  justify-content: flex-start;
+  gap: var(--spacing-3);
+}
+
+.message--tool {
+  justify-content: flex-start;
+  gap: var(--spacing-3);
+}
+
+/* Avatar for assistant */
+.message__avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--color-sage-200) 0%, var(--color-sage-300) 100%);
+  color: var(--color-sage-700);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* Message bubble */
+.message__bubble {
+  max-width: 85%;
+  font-size: var(--font-size-body);
+  line-height: 1.6;
+}
+
+.message__bubble--user {
+  background-color: var(--color-sage-100);
+  padding: var(--spacing-3) var(--spacing-4);
+  border-radius: 18px 18px 4px 18px;
+  font-family: var(--font-sans);
+  color: var(--color-text-primary);
+}
+
+.message__bubble--assistant {
+  font-family: var(--font-sans);
+  color: var(--color-text-primary);
+  max-width: 100%;
+}
+
+.message__bubble--tool {
+  font-family: var(--font-sans);
+  color: var(--color-text-primary);
+}
+
+/* Tool calls section */
+.message__tool-calls {
+  margin-bottom: var(--spacing-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-3);
+}
+
+/* Markdown content wrapper */
+.message__markdown {
+  position: relative;
+}
+
+/* Streaming cursor */
+.message__cursor {
+  display: inline-block;
+  color: var(--color-sage-500);
+  animation: cursor-blink 1s step-end infinite;
+  margin-left: 2px;
+}
+
+@keyframes cursor-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* Loading Animation */
+.message__loading {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: var(--spacing-2) 0;
+}
+
+.message__loading-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--color-sage-400);
+  animation: message-loading-bounce 1.4s ease-in-out infinite both;
+}
+
+.message__loading-dot:nth-child(1) {
+  animation-delay: -0.32s;
+}
+
+.message__loading-dot:nth-child(2) {
+  animation-delay: -0.16s;
+}
+
+.message__loading-dot:nth-child(3) {
+  animation-delay: 0s;
+}
+
+@keyframes message-loading-bounce {
+  0%, 80%, 100% {
+    transform: scale(0.6);
+    opacity: 0.5;
+  }
+  40% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Timestamp */
+.message__timestamp {
+  display: block;
+  font-size: 11px;
+  color: var(--color-text-tertiary);
+  margin-top: var(--spacing-2);
+  opacity: 0.7;
+}
+
+/* ============================================
+   Markdown Styling - Claude-like
+   ============================================ */
+
+/* Paragraphs */
+.md-paragraph {
+  margin: 0 0 var(--spacing-3) 0;
+}
+
+.md-paragraph:last-child {
+  margin-bottom: 0;
+}
+
+/* Headings */
+.md-heading {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin: var(--spacing-4) 0 var(--spacing-2) 0;
+}
+
+.md-heading:first-child {
+  margin-top: 0;
+}
+
+.md-h1 {
+  font-size: 1.5rem;
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: var(--spacing-2);
+}
+
+.md-h2 {
+  font-size: 1.25rem;
+}
+
+.md-h3 {
+  font-size: 1.1rem;
+}
+
+.md-h4 {
+  font-size: 1rem;
+}
+
+/* Inline code */
+.md-inline-code {
+  font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+  font-size: 0.875em;
+  background-color: var(--color-sage-100);
+  color: var(--color-sage-800);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+/* Code blocks */
+.md-code-block {
+  position: relative;
+  margin: var(--spacing-3) 0;
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: #1e1e1e;
+}
+
+.md-code-lang {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  font-size: 11px;
+  color: #888;
+  font-family: var(--font-sans);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.md-code-block pre {
+  margin: 0;
+  padding: var(--spacing-4);
+  overflow-x: auto;
+}
+
+.md-code-block code {
+  font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: #d4d4d4;
+}
+
+/* Tables */
+.md-table-wrapper {
+  overflow-x: auto;
+  margin: var(--spacing-3) 0;
+  border-radius: 8px;
+  border: 1px solid var(--color-border);
+}
+
+.md-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+
+.md-table th,
+.md-table td {
+  padding: var(--spacing-2) var(--spacing-3);
+  text-align: left;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.md-table th {
+  background-color: var(--color-sage-50);
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.md-table tr:last-child td {
+  border-bottom: none;
+}
+
+.md-table tr:hover td {
+  background-color: var(--color-sage-50);
+}
+
+/* Lists */
+.md-list {
+  margin: var(--spacing-2) 0;
+  padding-left: var(--spacing-6);
+}
+
+.md-list--unordered {
+  list-style-type: disc;
+}
+
+.md-list--ordered {
+  list-style-type: decimal;
+}
+
+.md-list-item {
+  margin: var(--spacing-1) 0;
+  line-height: 1.6;
+}
+
+.md-list-item .md-list {
+  margin-top: var(--spacing-1);
+}
+
+/* Blockquotes */
+.md-blockquote {
+  margin: var(--spacing-3) 0;
+  padding: var(--spacing-3) var(--spacing-4);
+  border-left: 3px solid var(--color-sage-400);
+  background-color: var(--color-sage-50);
+  border-radius: 0 8px 8px 0;
+  color: var(--color-text-secondary);
+  font-style: italic;
+}
+
+.md-blockquote p {
+  margin: 0;
+}
+
+/* Links */
+.md-link {
+  color: var(--color-sage-600);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s ease;
+}
+
+.md-link:hover {
+  border-bottom-color: var(--color-sage-600);
+}
+
+/* Horizontal rule */
+.md-hr {
+  border: none;
+  height: 1px;
+  background-color: var(--color-border);
+  margin: var(--spacing-4) 0;
+}
+
+/* Strong/Bold */
+.md-strong {
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+/* Emphasis/Italic */
+.md-em {
+  font-style: italic;
+}

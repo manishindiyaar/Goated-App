@@ -1,0 +1,441 @@
+/* GoatedApp Main Layout - Clinical Zen Design System */
+
+.app {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  background-color: var(--color-background);
+  color: var(--color-text-primary);
+  font-family: var(--font-sans);
+}
+
+/* ============================================
+   Sidebar - Clinical Zen
+   ============================================ */
+.sidebar {
+  width: 260px;
+  background-color: var(--color-sidebar-bg);
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  border-right: 1px solid var(--color-gray-200);
+}
+
+/* Drag region spacer for Mac traffic lights */
+.sidebar__drag-region {
+  height: 24px;
+  width: 100%;
+  -webkit-app-region: drag;
+  flex-shrink: 0;
+}
+
+.sidebar-header {
+  padding: var(--spacing-4);
+}
+
+/* New Session Button - Clinical Zen */
+.new-session-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spacing-2) var(--spacing-3);
+  background-color: var(--color-sage-50);
+  color: var(--color-sage-700);
+  border: 1px solid var(--color-sage-100);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  font-size: var(--font-size-small);
+  font-weight: 500;
+  transition: background-color var(--transition-normal);
+}
+
+.new-session-btn:hover {
+  background-color: var(--color-sage-100);
+}
+
+.new-session-btn__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  padding: var(--spacing-1);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition-normal);
+}
+
+.new-session-btn:hover .new-session-btn__icon {
+  transform: scale(1.1);
+}
+
+.plus-icon {
+  font-size: 18px;
+  font-weight: 300;
+}
+
+/* Conversation History - Clinical Zen */
+.sidebar-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0 var(--spacing-2);
+}
+
+.history-section__title {
+  padding: var(--spacing-2);
+  font-size: var(--font-size-caption);
+  font-weight: 600;
+  color: var(--color-gray-400);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.conversation-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-1);
+}
+
+.history-item {
+  padding: var(--spacing-2);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: background-color var(--transition-normal);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.history-item:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.history-item--active {
+  background-color: rgba(0, 0, 0, 0.08);
+}
+
+.empty-state {
+  color: var(--color-text-secondary);
+  text-align: center;
+  padding: var(--spacing-6);
+  font-size: var(--font-size-small);
+}
+
+/* User Profile Section - Clinical Zen */
+.sidebar-footer {
+  padding: var(--spacing-4);
+  border-top: 1px solid var(--color-gray-200);
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+  padding: var(--spacing-2);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: background-color var(--transition-normal);
+}
+
+.user-profile:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.user-profile__avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: var(--color-slate-blue-500);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-serif);
+  font-size: var(--font-size-small);
+  flex-shrink: 0;
+}
+
+.user-profile__name {
+  font-size: var(--font-size-small);
+  font-weight: 500;
+}
+
+/* ============================================
+   Main Content - Clinical Zen
+   ============================================ */
+.main-content {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  background-color: var(--color-background);
+}
+
+/* Connect Tool Button Positioning */
+.connect-tool-btn {
+  position: absolute;
+  top: var(--spacing-4);
+  right: var(--spacing-4);
+  z-index: 10;
+}
+
+/* Chat Area */
+.chat-area {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  padding: var(--spacing-8);
+  padding-bottom: 200px; /* Space for floating input */
+}
+
+/* Message List */
+.message-list {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+/* ============================================
+   Responsive Sidebar - Clinical Zen
+   ============================================ */
+
+/* Hamburger menu toggle button */
+.hamburger-toggle {
+  display: none;
+  position: absolute;
+  top: var(--spacing-4);
+  left: var(--spacing-4);
+  padding: var(--spacing-2);
+  border-radius: var(--radius-md);
+  color: var(--color-text-primary);
+  transition: background-color var(--transition-normal);
+  z-index: 10;
+}
+
+.hamburger-toggle:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* Sidebar backdrop overlay */
+.sidebar-backdrop {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 99;
+  opacity: 0;
+  transition: opacity var(--transition-normal);
+  pointer-events: none;
+}
+
+.sidebar-backdrop--visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+@media (max-width: 1024px) {
+  /* Show hamburger toggle on mobile */
+  .hamburger-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Sidebar as overlay */
+  .sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    z-index: 100;
+    transform: translateX(-100%);
+    transition: transform var(--transition-normal);
+    box-shadow: none;
+  }
+
+  .sidebar--open {
+    transform: translateX(0);
+    box-shadow: var(--shadow-lg);
+  }
+
+  /* Show backdrop when sidebar is open */
+  .sidebar-backdrop {
+    display: block;
+  }
+
+  /* Adjust chat area padding for mobile */
+  .chat-area {
+    padding-top: calc(var(--spacing-8) + 48px); /* Account for hamburger button */
+  }
+}
+
+
+/* Recorder Error Toast */
+.recorder-error {
+  position: fixed;
+  bottom: 120px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #FEE2E2;
+  color: #DC2626;
+  padding: var(--spacing-3) var(--spacing-4);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-small);
+  box-shadow: var(--shadow-md);
+  z-index: 100;
+  animation: fadeIn 0.2s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+
+/* Settings Button in Sidebar */
+.settings-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+  padding: var(--spacing-2) var(--spacing-3);
+  margin-bottom: var(--spacing-3);
+  color: var(--color-text-secondary);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-small);
+  font-weight: 500;
+  transition: color var(--transition-normal), background-color var(--transition-normal);
+}
+
+.settings-btn:hover {
+  color: var(--color-text-primary);
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.settings-btn svg {
+  flex-shrink: 0;
+}
+
+
+/* ============================================
+   Conversation List Items - Chat Persistence
+   ============================================ */
+
+.conversation-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spacing-2) var(--spacing-3);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: background-color var(--transition-normal);
+}
+
+.conversation-item:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.conversation-item--active {
+  background-color: var(--color-sage-50);
+}
+
+.conversation-item--active:hover {
+  background-color: var(--color-sage-100);
+}
+
+.conversation-item__content {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.conversation-item__title {
+  font-size: var(--font-size-small);
+  color: var(--color-text-primary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.conversation-item__time {
+  font-size: var(--font-size-caption);
+  color: var(--color-text-secondary);
+}
+
+.conversation-item__delete {
+  opacity: 0;
+  padding: var(--spacing-1);
+  color: var(--color-text-secondary);
+  border-radius: var(--radius-sm);
+  font-size: 16px;
+  line-height: 1;
+  transition: opacity var(--transition-normal), color var(--transition-normal), background-color var(--transition-normal);
+}
+
+.conversation-item:hover .conversation-item__delete {
+  opacity: 1;
+}
+
+.conversation-item__delete:hover {
+  color: var(--color-error);
+  background-color: rgba(220, 38, 38, 0.1);
+}
+
+/* ============================================
+   Loading and Error States
+   ============================================ */
+
+.loading-screen,
+.error-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+  gap: var(--spacing-4);
+  color: var(--color-text-secondary);
+}
+
+.loading-spinner {
+  width: 32px;
+  height: 32px;
+  border: 3px solid var(--color-gray-200);
+  border-top-color: var(--color-sage-500);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.error-screen button {
+  padding: var(--spacing-2) var(--spacing-4);
+  background-color: var(--color-sage-500);
+  color: white;
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-small);
+  font-weight: 500;
+  transition: background-color var(--transition-normal);
+}
+
+.error-screen button:hover {
+  background-color: var(--color-sage-600);
+}

@@ -1,0 +1,284 @@
+/* SettingsModal Component - Clinical Zen Settings Panel */
+/* Requirements: 14.1-14.4, 14.8, 14.9, 14.10 */
+
+/* Backdrop - Semi-transparent dark overlay (Req 14.1) */
+.settings-modal__backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.2s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Modal Container - White background, 16px radius, max-width 600px (Req 14.2) */
+.settings-modal {
+  background-color: var(--color-surface);
+  border-radius: var(--radius-lg);
+  max-width: 600px;
+  width: 90%;
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-lg);
+  animation: slideUp 0.2s ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Header */
+.settings-modal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spacing-4) var(--spacing-6);
+  border-bottom: 1px solid var(--color-gray-200);
+}
+
+.settings-modal__title {
+  font-family: var(--font-serif);
+  font-size: var(--font-size-body);
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+.settings-modal__close-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-2);
+  border-radius: var(--radius-md);
+  color: var(--color-gray-400);
+  transition: color var(--transition-normal), background-color var(--transition-normal);
+}
+
+.settings-modal__close-btn:hover {
+  color: var(--color-text-primary);
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* Tabbed Navigation (Req 14.3) */
+.settings-modal__tabs {
+  display: flex;
+  gap: var(--spacing-1);
+  padding: var(--spacing-2) var(--spacing-6);
+  border-bottom: 1px solid var(--color-gray-200);
+  background-color: var(--color-background);
+}
+
+.settings-modal__tab {
+  padding: var(--spacing-2) var(--spacing-4);
+  font-size: var(--font-size-small);
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  border-radius: var(--radius-md);
+  transition: color var(--transition-normal), background-color var(--transition-normal);
+}
+
+.settings-modal__tab:hover {
+  color: var(--color-text-primary);
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.settings-modal__tab--active {
+  color: var(--color-sage-700);
+  background-color: var(--color-sage-50);
+}
+
+.settings-modal__tab--active:hover {
+  color: var(--color-sage-700);
+  background-color: var(--color-sage-100);
+}
+
+/* Content Area */
+.settings-modal__content {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--spacing-6);
+}
+
+.settings-modal__panel {
+  min-height: 200px;
+}
+
+/* Footer with Save/Cancel buttons (Req 14.8, 14.9) */
+.settings-modal__footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--spacing-3);
+  padding: var(--spacing-4) var(--spacing-6);
+  border-top: 1px solid var(--color-gray-200);
+  background-color: var(--color-background);
+  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+}
+
+.settings-modal__btn {
+  padding: var(--spacing-2) var(--spacing-4);
+  font-size: var(--font-size-small);
+  font-weight: 500;
+  border-radius: var(--radius-md);
+  transition: all var(--transition-normal);
+}
+
+/* Cancel button - transparent with gray text (Req 14.9) */
+.settings-modal__btn--cancel {
+  color: var(--color-text-secondary);
+  background-color: transparent;
+}
+
+.settings-modal__btn--cancel:hover {
+  color: var(--color-text-primary);
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* Save button - primary green background with white text (Req 14.8) */
+.settings-modal__btn--save {
+  color: white;
+  background-color: var(--color-sage-500);
+}
+
+.settings-modal__btn--save:hover {
+  background-color: var(--color-sage-700);
+}
+
+.settings-modal__btn--save:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Tab Content Styling */
+.settings-tab {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+}
+
+.settings-tab__heading {
+  font-family: var(--font-serif);
+  font-size: var(--font-size-body);
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+.settings-tab__description {
+  font-size: var(--font-size-small);
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+.settings-tab__info {
+  margin-top: var(--spacing-4);
+  padding: var(--spacing-4);
+  background-color: var(--color-background);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-small);
+  color: var(--color-text-secondary);
+}
+
+.settings-tab__info p {
+  margin: 0;
+  margin-bottom: var(--spacing-2);
+}
+
+.settings-tab__info p:last-child {
+  margin-bottom: 0;
+}
+
+/* Form Controls (Req 14.5) - Focus ring styling */
+.settings-modal input:focus,
+.settings-modal select:focus,
+.settings-modal textarea:focus {
+  outline: none;
+  border-color: var(--color-sage-500);
+  box-shadow: 0 0 0 2px rgba(93, 133, 112, 0.2);
+}
+
+/* Toggle Switch (Req 14.6) */
+.settings-toggle {
+  position: relative;
+  width: 44px;
+  height: 24px;
+  background-color: var(--color-gray-200);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background-color var(--transition-normal);
+}
+
+.settings-toggle--active {
+  background-color: var(--color-sage-500);
+}
+
+.settings-toggle__knob {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 20px;
+  height: 20px;
+  background-color: white;
+  border-radius: 50%;
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition-normal);
+}
+
+.settings-toggle--active .settings-toggle__knob {
+  transform: translateX(20px);
+}
+
+/* Dropdown Select (Req 14.7) */
+.settings-select {
+  width: 100%;
+  padding: var(--spacing-2) var(--spacing-4);
+  font-size: var(--font-size-small);
+  color: var(--color-text-primary);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-gray-200);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: border-color var(--transition-normal);
+}
+
+.settings-select:hover {
+  border-color: var(--color-gray-400);
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .settings-modal {
+    width: 95%;
+    max-height: 90vh;
+  }
+
+  .settings-modal__tabs {
+    overflow-x: auto;
+    padding: var(--spacing-2) var(--spacing-4);
+  }
+
+  .settings-modal__content {
+    padding: var(--spacing-4);
+  }
+
+  .settings-modal__footer {
+    padding: var(--spacing-3) var(--spacing-4);
+  }
+}

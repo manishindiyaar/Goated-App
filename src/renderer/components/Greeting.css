@@ -1,0 +1,58 @@
+/* Greeting Component - Clinical Zen Empty State */
+
+.greeting {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: var(--spacing-32);
+}
+
+.greeting__icon {
+  width: 64px;
+  height: 64px;
+  background-color: var(--color-sage-50);
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--spacing-8);
+  box-shadow: var(--shadow-sm);
+}
+
+.greeting__icon svg {
+  width: 32px;
+  height: 32px;
+  color: var(--color-sage-500);
+}
+
+.greeting__title {
+  font-family: var(--font-serif);
+  font-size: clamp(40px, 5vw, 50px);
+  color: var(--color-text-primary);
+  margin-bottom: var(--spacing-4);
+  letter-spacing: -0.02em;
+  text-align: center;
+}
+
+.greeting__subtitle {
+  color: var(--color-text-secondary);
+  font-size: 18px;
+  font-weight: 300;
+  max-width: 448px;
+  text-align: center;
+  line-height: 1.5;
+  margin-bottom: var(--spacing-2);
+}
+
+.greeting__status {
+  font-size: var(--font-size-small);
+  font-weight: 500;
+  color: var(--color-sage-500);
+}
+
+.greeting__status::before {
+  content: '●';
+  margin-right: var(--spacing-1);
+}
